@@ -68,7 +68,7 @@ public partial class MainWindow : Window
             Root.ContextMenu = BuildContextMenu();
         };
         _ticker.Tick += (_, _) => { _timer.Tick(DateTimeOffset.Now); UpdateDisplay(); };
-        _timer.SessionFinished += _completionSounds.Play;
+        _timer.SessionFinished += finished => _completionSounds.Play(finished, _timer.Kind);
         _saveDebounce.Tick += (_, _) => { _saveDebounce.Stop(); SaveState(); };
         _ready = true;
         UpdateDisplay();
@@ -221,8 +221,11 @@ public partial class MainWindow : Window
 
     private void PlayButton_Click(object sender, RoutedEventArgs e)
     {
+        var previousKind = _timer.Kind;
         if (_timer.IsRunning) _timer.Pause(DateTimeOffset.Now);
         else _timer.Start(DateTimeOffset.Now);
+        if (_timer.Kind == previousKind)
+            _completionSounds.PlayControl();
         UpdateDisplay();
     }
 
@@ -235,6 +238,7 @@ public partial class MainWindow : Window
     private void ResetButton_Click(object sender, RoutedEventArgs e)
     {
         _timer.Reset();
+        _completionSounds.PlayControl();
         UpdateDisplay();
     }
 

@@ -8,9 +8,9 @@
 
 Windows masaüstünün bir köşesinde duran, sürükleyip istediğin yere bırakabildiğin Pomodoro uygulaması. On farklı maskottan birini seç; odaklanırken, kısa molada ve uzun molada sana eşlik etsin.
 
-**Mimo v1 · Windows 10/11 · 64 bit**
+**Mimo v1.0.1 · Windows 10/11 · 64 bit**
 
-[**Kurulumu indir**](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo-Setup.exe) · [Web sitesi](https://mimo.serhatkochan.com/) · [v1 sürümü](https://github.com/serhatkochan/mimo/releases/tag/v1) · [Kullanım](#kullanım) · [Kaynaktan çalıştırma](#kaynaktan-çalıştırma)
+[**Kurulumu indir**](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo-Setup.exe) · [Web sitesi](https://mimo.serhatkochan.com/) · [v1.0.1 sürümü](https://github.com/serhatkochan/mimo/releases/tag/v1.0.1) · [Kullanım](#kullanım) · [Kaynaktan çalıştırma](#kaynaktan-çalıştırma)
 
 </div>
 
@@ -49,7 +49,9 @@ Her maskotun odak, kısa mola ve uzun mola için ayrı çizimi ve kendine özgü
 
 Mimo; seçtiğin maskotu, maskotun görünürlüğünü, pencere konumunu ve süre ayarlarını `%LOCALAPPDATA%\Mimo\state.json` dosyasında tutar. Günlük çalışma geçmişi, hesap veya çevrimiçi eşitleme yoktur. Uygulama açıldığında yeni birinci turla başlar ve kullanmak için internet gerekmez.
 
-Odak turu ve mola bittiğinde iki ayrı, kısa bildirim sesi çalar. Başlangıç sesi veya müzik oynatıcısı içermez.
+Kısa ve uzun molaların başlangıcında ve bitişinde dört ayrı ses çalar. **Sonraki adım** ile elle geçiş yaptığında da ilgili geçiş sesini duyarsın. **Oynat / duraklat** ve **Sıfırla** düğmeleri kısa bir kontrol sesi verir. Sesler belirgin ve tutarlı bir seviyeye getirilmiş, uygulamanın içine gömülmüştür; ayrı ses dosyası veya internet gerekmez. Duyduğun son ses seviyesi Windows'un ve Mimo'nun ses mikserindeki seviyesine bağlıdır.
+
+Seslerin MP3 kaynakları `Mimo/Assets/Sounds/Sources` altında saklanır. WAV dosyalarını yeniden hazırlamak için FFmpeg kurulu bir bilgisayarda `powershell -ExecutionPolicy Bypass -File scripts/Prepare-NotificationSounds.ps1` çalıştır. Geçiş sesleri −14 LUFS ve en fazla −1 dBTP hedefiyle dengelenir.
 
 **Güncelleme:** Sağ tık → **Çıkış** ile uygulamayı kapatıp [güncel kurulum dosyasını](https://github.com/serhatkochan/mimo/releases/latest) çalıştır. Ayarlar uygulama dosyasından ayrı tutulduğu için korunur.
 
@@ -71,4 +73,4 @@ powershell -ExecutionPolicy Bypass -File scripts\Build-Installer.ps1
 
 Çıktı `publish\Mimo-Setup.exe` dosyasına yazılır.
 
-Siteyi yerel olarak hazırlamak için `node web/build.mjs` çalıştır; dosyalar `web/dist` klasörüne yazılır. [Site geliştirme notları](web/README.md) ve [v1 kurulum dosyası](https://github.com/serhatkochan/mimo/releases/tag/v1) ayrı sayfalardadır.
+Siteyi yerel olarak hazırlamak için `node web/build.mjs` çalıştır; dosyalar `web/dist` klasörüne yazılır. [Site geliştirme notları](web/README.md) ve [güncel kurulum dosyası](https://github.com/serhatkochan/mimo/releases/latest) ayrı sayfalardadır.

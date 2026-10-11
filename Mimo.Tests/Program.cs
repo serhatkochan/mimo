@@ -43,7 +43,9 @@ Assert(timer.Remaining == TimeSpan.FromMinutes(23), "automatic focus counts down
 
 var naturalCycle = new PomodoroTimer();
 var cycleEvents = new List<SessionKind>();
+var cycleTransitions = new List<(SessionKind Finished, SessionKind Next)>();
 naturalCycle.SessionFinished += kind => cycleEvents.Add(kind);
+naturalCycle.SessionFinished += kind => cycleTransitions.Add((kind, naturalCycle.Kind));
 var cycleTime = now;
 naturalCycle.Start(cycleTime);
 for (var round = 1; round <= 4; round++)
@@ -75,6 +77,16 @@ Assert(cycleEvents.SequenceEqual([
         SessionKind.Focus, SessionKind.ShortBreak,
         SessionKind.Focus, SessionKind.LongBreak
     ]), "one completion event per naturally finished phase");
+Assert(cycleTransitions.SequenceEqual([
+    (SessionKind.Focus, SessionKind.ShortBreak),
+    (SessionKind.ShortBreak, SessionKind.Focus),
+    (SessionKind.Focus, SessionKind.ShortBreak),
+    (SessionKind.ShortBreak, SessionKind.Focus),
+    (SessionKind.Focus, SessionKind.ShortBreak),
+    (SessionKind.ShortBreak, SessionKind.Focus),
+    (SessionKind.Focus, SessionKind.LongBreak),
+    (SessionKind.LongBreak, SessionKind.Focus)
+]), "audio callbacks see the correct destination including the fourth round's long break");
 naturalCycle.Tick(cycleTime.AddHours(1));
 Assert(!naturalCycle.IsRunning && naturalCycle.Remaining == TimeSpan.FromMinutes(25) &&
        cycleEvents.Count == 8, "completed set does not restart itself");
@@ -114,8 +126,10 @@ Assert(pausedBreak.Kind == SessionKind.Focus && pausedBreak.IsRunning,
     "resumed break automatically starts the next focus on completion");
 
 var manualCycle = new PomodoroTimer();
-var manualNotifications = 0;
-manualCycle.SessionFinished += _ => manualNotifications++;
+var manualNotifications = new List<SessionKind>();
+var manualTransitions = new List<(SessionKind Finished, SessionKind Next)>();
+manualCycle.SessionFinished += kind => manualNotifications.Add(kind);
+manualCycle.SessionFinished += kind => manualTransitions.Add((kind, manualCycle.Kind));
 for (var round = 1; round <= 8; round++)
 {
     Assert(manualCycle.Kind == SessionKind.Focus && manualCycle.CurrentRound ==
@@ -126,12 +140,25 @@ for (var round = 1; round <= 8; round++)
     manualCycle.Skip(now);
 }
 Assert(manualCycle.CurrentRound == 1 && manualCycle.FinishedFocusRounds == 8 &&
-       !manualCycle.IsRunning && manualNotifications == 0,
-    "manual skips cycle without playing completion events");
+       !manualCycle.IsRunning && manualNotifications.Count == 16,
+    "each paused manual skip reports one transition for audio");
+Assert(manualNotifications.SequenceEqual([
+    SessionKind.Focus, SessionKind.ShortBreak,
+    SessionKind.Focus, SessionKind.ShortBreak,
+    SessionKind.Focus, SessionKind.ShortBreak,
+    SessionKind.Focus, SessionKind.LongBreak,
+    SessionKind.Focus, SessionKind.ShortBreak,
+    SessionKind.Focus, SessionKind.ShortBreak,
+    SessionKind.Focus, SessionKind.ShortBreak,
+    SessionKind.Focus, SessionKind.LongBreak
+]), "manual transitions identify short and long break endings separately");
+Assert(manualTransitions[6] == (SessionKind.Focus, SessionKind.LongBreak) &&
+       manualTransitions[7] == (SessionKind.LongBreak, SessionKind.Focus),
+    "manual audio callbacks see long break entry and exit after advancing");
 
 var continuousCycle = new PomodoroTimer();
-var continuousNotifications = 0;
-continuousCycle.SessionFinished += _ => continuousNotifications++;
+var continuousNotifications = new List<SessionKind>();
+continuousCycle.SessionFinished += kind => continuousNotifications.Add(kind);
 continuousCycle.Start(now);
 continuousCycle.Skip(now.AddMinutes(2));
 Assert(continuousCycle.Kind == SessionKind.ShortBreak && continuousCycle.IsRunning &&
@@ -145,7 +172,11 @@ continuousCycle.Pause(now.AddMinutes(4));
 continuousCycle.Skip(now.AddMinutes(4));
 Assert(continuousCycle.Kind == SessionKind.ShortBreak && !continuousCycle.IsRunning,
     "paused skip keeps next phase paused");
-Assert(continuousNotifications == 0, "running and paused skips have no completion event");
+Assert(continuousNotifications.SequenceEqual([
+    SessionKind.Focus, SessionKind.ShortBreak, SessionKind.Focus
+]), "running and paused skips report each transition once");
+continuousCycle.Tick(now.AddHours(1));
+Assert(continuousNotifications.Count == 3, "paused manual transition does not notify again on tick");
 
 var settingsTimer = new PomodoroTimer();
 settingsTimer.FocusMinutes = 40;

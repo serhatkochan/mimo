@@ -4,7 +4,7 @@
 AppId=SerhatKochan.Mimo
 AppName=Mimo
 AppVersion={#AppVersion}
-AppVerName=Mimo v1
+AppVerName=Mimo {#AppVersion}
 AppPublisher=Serhat Koçhan
 AppPublisherURL=https://mimo.serhatkochan.com/
 AppSupportURL=https://github.com/serhatkochan/mimo/issues

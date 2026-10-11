@@ -61,6 +61,7 @@ public sealed class PomodoroTimer
     public double Progress => Math.Clamp(
         1 - Remaining.TotalSeconds / _phaseDuration.TotalSeconds, 0, 1);
 
+    /// <summary>Reports natural completions and manual skips after the next phase is ready.</summary>
     public event Action<SessionKind>? SessionFinished;
 
     public void Start(DateTimeOffset now)
@@ -110,10 +111,12 @@ public sealed class PomodoroTimer
     public void Skip(DateTimeOffset now)
     {
         // The next-phase action moves through the same round cycle as a finished timer.
+        var finished = Kind;
         var keepRunning = IsRunning;
         Advance();
         if (keepRunning)
             Start(now);
+        SessionFinished?.Invoke(finished);
     }
 
     public void Tick(DateTimeOffset now)
