@@ -14,6 +14,11 @@ Windows masaüstünün bir köşesinde duran, sürükleyip istediğin yere bıra
 
 </div>
 
+<p align="center">
+  <a href="https://mimo.serhatkochan.com/"><img src="docs/assets/landing-hero.png" width="960" alt="Mimo tanıtım sayfası: dört parçalı logo, odak mesajı, arı maskotu ve etkileşimli zaman paneli" /></a>
+</p>
+<p align="center"><sub>Tanıtım sayfasındaki etkileşimli önizleme. Gerçek uygulama, masaüstünde yalnız maskot ve küçük zaman paneli olarak durur.</sub></p>
+
 ## Kullanım
 
 1. [Mimo.exe dosyasını indir](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo.exe) ve aç. Ayrı bir kurulum veya .NET yüklemesi gerekmez.
