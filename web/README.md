@@ -8,4 +8,4 @@ Build from the repository root:
 node web/build.mjs
 ```
 
-Serve or deploy `web/dist`. On Vercel, use the repository root as Root Directory, `node web/build.mjs` as Build Command, and `web/dist` as Output Directory. The download buttons point to the `Mimo.exe` asset in the latest GitHub release of `serhatkochan/mimo`.
+Serve or deploy `web/dist`. On Vercel, use the repository root as Root Directory, `node web/build.mjs` as Build Command, and `web/dist` as Output Directory. The download buttons point to the `Mimo-Setup.exe` installer asset in the latest GitHub release of `serhatkochan/mimo`.

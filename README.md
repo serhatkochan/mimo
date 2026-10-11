@@ -8,9 +8,9 @@
 
 Windows masaüstünün bir köşesinde duran, sürükleyip istediğin yere bırakabildiğin Pomodoro uygulaması. On farklı maskottan birini seç; odaklanırken, kısa molada ve uzun molada sana eşlik etsin.
 
-**Windows 10/11 · 64 bit · Kurulumsuz kullanım**
+**Mimo v1 · Windows 10/11 · 64 bit**
 
-[**Windows için indir**](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo.exe) · [Web sitesi](https://mimo.serhatkochan.com/) · [Son sürüm](https://github.com/serhatkochan/mimo/releases/latest) · [Kullanım](#kullanım) · [Kaynaktan çalıştırma](#kaynaktan-çalıştırma)
+[**Kurulumu indir**](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo-Setup.exe) · [Web sitesi](https://mimo.serhatkochan.com/) · [v1 sürümü](https://github.com/serhatkochan/mimo/releases/tag/v1) · [Kullanım](#kullanım) · [Kaynaktan çalıştırma](#kaynaktan-çalıştırma)
 
 </div>
 
@@ -21,8 +21,8 @@ Windows masaüstünün bir köşesinde duran, sürükleyip istediğin yere bıra
 
 ## Kullanım
 
-1. [Mimo.exe dosyasını indir](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo.exe) ve aç. Ayrı bir kurulum veya .NET yüklemesi gerekmez.
-2. Maskotu ya da altındaki küçük zaman panelini tutup masaüstünde istediğin yere taşı.
+1. [Mimo-Setup.exe kurulum dosyasını indir](https://github.com/serhatkochan/mimo/releases/latest/download/Mimo-Setup.exe) ve kurulumu tamamla. Ayrı bir .NET yüklemesi gerekmez.
+2. Masaüstündeki **Mimo** kısayolundan uygulamayı aç. Maskotu ya da altındaki küçük zaman panelini tutup istediğin yere taşı.
 3. **Oynat** ile turu başlat. Sağ tık → **Süre ayarları** ile ritmini, **Maskot seç** ile arkadaşını değiştir.
 
 Panel tur numarasını ve kalan süreyi gösterir; hep diğer pencerelerin üzerinde kalır. Maskotu gizlersen panel yerinde durur. Uygulamayı kapatmak için maskotta veya panelde sağ tık → **Çıkış** seç.
@@ -51,7 +51,7 @@ Mimo; seçtiğin maskotu, maskotun görünürlüğünü, pencere konumunu ve sü
 
 Uygulama sessiz çalışır; başlangıç/bitiş sesi veya müzik oynatıcısı içermez.
 
-**Güncelleme:** Sağ tık → **Çıkış** ile uygulamayı kapat, [son sürümdeki Mimo.exe dosyasını](https://github.com/serhatkochan/mimo/releases/latest) indirip öncekinin yerine koy. Ayarlar uygulama dosyasından ayrı tutulduğu için korunur.
+**Güncelleme:** Sağ tık → **Çıkış** ile uygulamayı kapatıp [güncel kurulum dosyasını](https://github.com/serhatkochan/mimo/releases/latest) çalıştır. Ayarlar uygulama dosyasından ayrı tutulduğu için korunur.
 
 ## Kaynaktan çalıştırma
 
@@ -63,10 +63,12 @@ dotnet run --project Mimo\Mimo.csproj
 dotnet run --project Mimo.Tests\Mimo.Tests.csproj
 ```
 
-Windows için tek dosyalı, çalışma zamanı dahil bir paket üretmek istersen:
+Kurulum dosyasını üretmek için [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) ve [Inno Setup 6](https://jrsoftware.org/isinfo.php) gerekir:
 
 ```powershell
-dotnet publish Mimo\Mimo.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
+powershell -ExecutionPolicy Bypass -File scripts\Build-Installer.ps1
 ```
 
-Siteyi yerel olarak hazırlamak için `node web/build.mjs` çalıştır; dosyalar `web/dist` klasörüne yazılır. [Site geliştirme notları](web/README.md) ve [son Windows sürümü](https://github.com/serhatkochan/mimo/releases/latest) ayrı sayfalardadır.
+Çıktı `publish\Mimo-Setup.exe` dosyasına yazılır.
+
+Siteyi yerel olarak hazırlamak için `node web/build.mjs` çalıştır; dosyalar `web/dist` klasörüne yazılır. [Site geliştirme notları](web/README.md) ve [v1 kurulum dosyası](https://github.com/serhatkochan/mimo/releases/tag/v1) ayrı sayfalardadır.

@@ -8,6 +8,10 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>Mimo</AssemblyName>
     <RootNamespace>Mimo</RootNamespace>
+    <Version>1.0.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Product>Mimo</Product>
+    <Company>Serhat Koçhan</Company>
     <ApplicationIcon>Assets\mimo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>

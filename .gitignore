@@ -4,6 +4,7 @@
 *.user
 *.suo
 publish/
+.capture-profile/
 *-preview.png
 .env
 .env.*
