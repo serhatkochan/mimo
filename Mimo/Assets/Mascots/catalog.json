@@ -1,0 +1,15 @@
+{
+  "default": "bee",
+  "mascots": [
+    { "id": "bee", "name": "Arı" },
+    { "id": "cactus", "name": "Kaktüs" },
+    { "id": "jellyfish", "name": "Jeli" },
+    { "id": "ghost", "name": "Hayalet" },
+    { "id": "snail", "name": "Salyangoz" },
+    { "id": "capybara", "name": "Kapibara" },
+    { "id": "mushroom", "name": "Mantar" },
+    { "id": "crab", "name": "Yengeç" },
+    { "id": "seal", "name": "Fok" },
+    { "id": "teapot", "name": "Demlik" }
+  ]
+}

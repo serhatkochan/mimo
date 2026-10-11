@@ -1,0 +1,72 @@
+{
+  "image": "snail.png",
+  "columns": 4,
+  "rows": 3,
+  "cell_width": 362,
+  "cell_height": 362,
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": [
+        0
+      ],
+      "frame_ms": 700,
+      "source_y": 102,
+      "source_height": 287,
+      "destination_y": 69
+    },
+    "focus": {
+      "row": 0,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1000,
+      "source_y": 102,
+      "source_height": 287,
+      "destination_y": 69
+    },
+    "shortBreak": {
+      "row": 1,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1200,
+      "source_y": 430,
+      "source_height": 292,
+      "destination_y": 64
+    },
+    "longBreak": {
+      "row": 2,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1500,
+      "source_y": 754,
+      "source_height": 264,
+      "destination_y": 92
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "image": "jellyfish.png",
+  "columns": 4,
+  "rows": 3,
+  "cell_width": 362,
+  "cell_height": 362,
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": [
+        0
+      ],
+      "frame_ms": 700,
+      "source_y": 23,
+      "source_height": 335,
+      "destination_y": 21
+    },
+    "focus": {
+      "row": 0,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1000,
+      "source_y": 23,
+      "source_height": 335,
+      "destination_y": 21
+    },
+    "shortBreak": {
+      "row": 1,
+      "frames": [
+        0
+      ],
+      "frame_ms": 1200,
+      "source_y": 363,
+      "source_height": 340,
+      "destination_y": 16
+    },
+    "longBreak": {
+      "row": 2,
+      "frames": [
+        0
+      ],
+      "frame_ms": 1500,
+      "source_y": 730,
+      "source_height": 320,
+      "destination_y": 36
+    }
+  }
+}

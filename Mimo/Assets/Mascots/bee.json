@@ -1,0 +1,56 @@
+{
+  "image": "bee.png",
+  "columns": 4,
+  "rows": 3,
+  "cell_width": 362,
+  "cell_height": 362,
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": [
+        0
+      ],
+      "frame_ms": 700,
+      "source_y": 31,
+      "source_height": 317,
+      "destination_y": 39
+    },
+    "focus": {
+      "row": 0,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1000,
+      "source_y": 31,
+      "source_height": 317,
+      "destination_y": 39
+    },
+    "shortBreak": {
+      "row": 1,
+      "frames": [
+        0
+      ],
+      "frame_ms": 1200,
+      "source_y": 377,
+      "source_height": 325,
+      "destination_y": 31
+    },
+    "longBreak": {
+      "row": 2,
+      "frames": [
+        0
+      ],
+      "frame_ms": 1500,
+      "source_y": 749,
+      "source_height": 304,
+      "destination_y": 52
+    }
+  }
+}

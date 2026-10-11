@@ -1,0 +1,72 @@
+{
+  "image": "capybara.png",
+  "columns": 4,
+  "rows": 3,
+  "cell_width": 361,
+  "cell_height": 362,
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": [
+        0
+      ],
+      "frame_ms": 700,
+      "source_y": 83,
+      "source_height": 285,
+      "destination_y": 71
+    },
+    "focus": {
+      "row": 0,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1000,
+      "source_y": 83,
+      "source_height": 285,
+      "destination_y": 71
+    },
+    "shortBreak": {
+      "row": 1,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1200,
+      "source_y": 433,
+      "source_height": 291,
+      "destination_y": 65
+    },
+    "longBreak": {
+      "row": 2,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1500,
+      "source_y": 811,
+      "source_height": 199,
+      "destination_y": 157
+    }
+  }
+}

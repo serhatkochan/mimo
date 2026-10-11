@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>Mimo</AssemblyName>
+    <RootNamespace>Mimo</RootNamespace>
+    <ApplicationIcon>Assets\mimo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Mascots\catalog.json" />
+    <Resource Include="Assets\Mascots\snail.*;Assets\Mascots\cactus.*;Assets\Mascots\jellyfish.*;Assets\Mascots\ghost.*;Assets\Mascots\bee.*;Assets\Mascots\capybara.*;Assets\Mascots\mushroom.*;Assets\Mascots\crab.*;Assets\Mascots\seal.*;Assets\Mascots\teapot.*" />
+  </ItemGroup>
+</Project>

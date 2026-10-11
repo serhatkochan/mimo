@@ -1,0 +1,251 @@
+<Window x:Class="Mimo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Mimo.Controls"
+        Title="Mimo" Width="160" Height="178" MinWidth="160" MinHeight="46"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True"
+        WindowStartupLocation="Manual"
+        Loaded="Window_Loaded" Closing="Window_Closing" LocationChanged="Window_LocationChanged"
+        PreviewMouseMove="Window_PreviewMouseMove" PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp">
+    <Window.Resources>
+        <Style x:Key="PillButton" TargetType="Button">
+            <Setter Property="Foreground" Value="#FFF4E9" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Arrow" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Surface" Background="{TemplateBinding Background}" CornerRadius="12" Margin="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Surface" Property="Background" Value="#35353B" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Surface" Property="Background" Value="#464148" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SettingsInput" TargetType="TextBox">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#FFF4E9" />
+            <Setter Property="Background" Value="#342F31" />
+            <Setter Property="BorderBrush" Value="#655A59" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CaretBrush" Value="#F7B580" />
+            <Setter Property="SelectionBrush" Value="#89664C" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="InputBorder" CornerRadius="7"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="InputBorder" Property="BorderBrush" Value="#9D7C66" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="InputBorder" Property="BorderBrush" Value="#F7B580" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MascotThumbButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="52" />
+            <Setter Property="Height" Value="68" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Background" Value="#382E2B2C" />
+            <Setter Property="BorderBrush" Value="#716157" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ThumbSurface" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ThumbSurface" Property="Background" Value="#665145" />
+                                <Setter TargetName="ThumbSurface" Property="BorderBrush" Value="#E8AA77" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="Root" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="MascotRow" Height="132" />
+            <RowDefinition x:Name="PanelRow" Height="46" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="MascotSurface" Grid.Row="0" Background="Transparent">
+            <controls:AnimatedMascot x:Name="MascotImage" Width="128" Height="128"
+                                     HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                     Cursor="Arrow" ToolTip="Taşımak için sürükle"
+                                     MouseLeftButtonDown="Mascot_MouseLeftButtonDown" />
+        </Grid>
+
+        <Grid x:Name="PanelHost" Grid.Row="1" Background="Transparent"
+              MouseLeftButtonDown="Panel_MouseLeftButtonDown">
+            <Border x:Name="TimerView" Width="152" Height="42"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="19"
+                    Background="#F0171719" BorderBrush="#464348" BorderThickness="1">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="13" ShadowDepth="3" Opacity="0.5" />
+                </Border.Effect>
+                <Grid Margin="7,7,7,7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="22" />
+                        <ColumnDefinition Width="22" />
+                        <ColumnDefinition Width="22" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Margin="2,0,0,0">
+                        <TextBlock x:Name="PhaseLabel" Text="1. TUR" FontFamily="Segoe UI Semibold"
+                                   FontSize="9" Foreground="#F8B77D" />
+                        <TextBlock x:Name="TimeLabel" Text="25:00" FontFamily="Segoe UI Semibold"
+                                   FontSize="15" Foreground="#FFF8F0" Margin="0,-3,0,0" />
+                    </StackPanel>
+                    <Button x:Name="PlayButton" Grid.Column="1" Style="{StaticResource PillButton}"
+                            ToolTip="Başlat / duraklat"
+                            AutomationProperties.Name="Başlat veya duraklat" Click="PlayButton_Click">
+                        <Path x:Name="PlayGlyph" Data="M 3,2 L 12,8 L 3,14 Z"
+                              Fill="#FFF4E9" Width="11" Height="11" Stretch="Uniform" />
+                    </Button>
+                    <Button x:Name="NextPhaseButton" Grid.Column="2" Style="{StaticResource PillButton}"
+                            ToolTip="Sonraki adıma geç" AutomationProperties.Name="Sonraki adıma geç"
+                            Click="NextPhaseButton_Click">
+                        <Path Data="M 1.5,2.5 L 7.5,6 L 1.5,9.5 Z M 9.5,2.5 H 11 V 9.5 H 9.5 Z"
+                              Fill="#DED6D0" Width="11" Height="11" Stretch="Uniform" />
+                    </Button>
+                    <Button x:Name="ResetButton" Grid.Column="3" Style="{StaticResource PillButton}"
+                            ToolTip="Bu adımı sıfırla" AutomationProperties.Name="Bu adımı sıfırla"
+                            Click="ResetButton_Click">
+                        <Path Data="M 10.4,4.5 A 4.7,4.7 0 1 0 10.6,8 M 10.4,1.8 V 4.5 H 7.7"
+                              Stroke="#DED6D0" StrokeThickness="1.5"
+                              StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                              StrokeLineJoin="Round" Width="12" Height="12" Stretch="Uniform" />
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Popup x:Name="OptionsPopup" Grid.Row="1"
+               PlacementTarget="{Binding ElementName=Root}" Placement="RelativePoint"
+               StaysOpen="False"
+               AllowsTransparency="True" PopupAnimation="Fade">
+            <Grid>
+
+            <Border x:Name="SettingsView" Width="292" Height="222"
+                    Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    CornerRadius="18" Background="#F0171719"
+                    BorderBrush="#6F6059" BorderThickness="1" Padding="16,14">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="4" Opacity="0.55" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="39" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="24" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="OTURUM AYARLARI" FontFamily="Segoe UI Semibold" FontSize="12"
+                                   Foreground="#FFF4E9" />
+                        <TextBlock Text="Süreleri ve uzun mola döngüsünü belirle" FontFamily="Segoe UI"
+                                   FontSize="10" Foreground="#BDB0AA" Margin="0,3,0,0" />
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,8">
+                            <TextBlock Text="Odak · dk" Foreground="#F8B77D" FontSize="11" Margin="0,0,0,5" />
+                            <TextBox x:Name="FocusMinutesBox" Style="{StaticResource SettingsInput}"
+                                     MaxLength="3" InputScope="Number" TextChanged="SettingsTextChanged"
+                                     ToolTip="Odak süresi · 1–180 dk" AutomationProperties.Name="Odak süresi, dakika" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,0,8">
+                            <TextBlock Text="Kısa mola · dk" Foreground="#9ED7C8" FontSize="11" Margin="0,0,0,5" />
+                            <TextBox x:Name="ShortBreakMinutesBox" Style="{StaticResource SettingsInput}"
+                                     MaxLength="3" InputScope="Number" TextChanged="SettingsTextChanged"
+                                     ToolTip="Kısa mola · 1–180 dk" AutomationProperties.Name="Kısa mola süresi, dakika" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="0">
+                            <TextBlock Text="Uzun mola · dk" Foreground="#AFC9EB" FontSize="11" Margin="0,0,0,5" />
+                            <TextBox x:Name="LongBreakMinutesBox" Style="{StaticResource SettingsInput}"
+                                     MaxLength="3" InputScope="Number" TextChanged="SettingsTextChanged"
+                                     ToolTip="Uzun mola · 1–180 dk" AutomationProperties.Name="Uzun mola süresi, dakika" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2">
+                            <TextBlock Text="Set başına odak" Foreground="#D7C6B7" FontSize="11" Margin="0,0,0,5" />
+                            <TextBox x:Name="LongBreakEveryBox" Style="{StaticResource SettingsInput}"
+                                     MaxLength="2" InputScope="Number" TextChanged="SettingsTextChanged"
+                                     ToolTip="Uzun molaya kadar odak sayısı · 2–12"
+                                     AutomationProperties.Name="Uzun molaya kadar odak sayısı" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Grid.Row="2" Text="Geçerli değişiklikler otomatik kaydedilir"
+                               FontSize="10" Foreground="#AB9D96" VerticalAlignment="Bottom" />
+                </Grid>
+            </Border>
+
+            <Border x:Name="MascotPickerView" Width="318" Height="215"
+                    Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    CornerRadius="18" Background="#F0171719"
+                    BorderBrush="#6F6059" BorderThickness="1" Padding="15,13">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="4" Opacity="0.55" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="38" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="MASKOT SEÇ" FontFamily="Segoe UI Semibold" FontSize="12"
+                                   Foreground="#FFF4E9" />
+                        <TextBlock Text="Maskotları dene · dışarı tıklayınca kapanır" FontSize="10"
+                                   Foreground="#BDB0AA" Margin="0,3,0,0" />
+                    </StackPanel>
+                    <UniformGrid x:Name="MascotItemsPanel" Grid.Row="1" Columns="5" Rows="2" />
+                </Grid>
+            </Border>
+
+            </Grid>
+        </Popup>
+    </Grid>
+</Window>

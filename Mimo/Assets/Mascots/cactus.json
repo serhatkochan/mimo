@@ -1,0 +1,72 @@
+{
+  "image": "cactus.png",
+  "columns": 4,
+  "rows": 3,
+  "cell_width": 362,
+  "cell_height": 362,
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": [
+        0
+      ],
+      "frame_ms": 700,
+      "source_y": 56,
+      "source_height": 295,
+      "destination_y": 61
+    },
+    "focus": {
+      "row": 0,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1000,
+      "source_y": 56,
+      "source_height": 295,
+      "destination_y": 61
+    },
+    "shortBreak": {
+      "row": 1,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1200,
+      "source_y": 403,
+      "source_height": 289,
+      "destination_y": 67
+    },
+    "longBreak": {
+      "row": 2,
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ms": 1500,
+      "source_y": 736,
+      "source_height": 306,
+      "destination_y": 50
+    }
+  }
+}
