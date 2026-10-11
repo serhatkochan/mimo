@@ -11,7 +11,8 @@
   <meta property="og:description" content="10 maskotlu, minik ve sürüklenebilir Windows Pomodoro uygulaması.">
   <meta property="og:url" content="https://mimo.serhatkochan.com/">
   <link rel="canonical" href="https://mimo.serhatkochan.com/">
-  <link rel="icon" href="assets/mimo.ico" sizes="any">
+  <link rel="icon" href="assets/mimo.ico" type="image/x-icon">
+  <link rel="icon" href="assets/mimo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <title>Mimo — Masaüstünde küçük bir odak arkadaşı</title>
 </head>
@@ -46,17 +47,17 @@
           <p class="download-note">Windows 10/11 · 64 bit · Kurulum gerektirmez</p>
         </div>
 
-        <div class="hero-art" aria-label="Mimo arı maskotu ve küçük zaman paneli önizlemesi">
+        <div class="hero-art is-previewing" role="group" aria-label="Etkileşimli Pomodoro önizlemesi">
           <div class="hero-art-grid" aria-hidden="true"></div>
           <div class="hero-orbit" aria-hidden="true"></div>
           <span class="hero-spark hero-spark-one" aria-hidden="true">✳</span>
           <span class="hero-spark hero-spark-two" aria-hidden="true">✦</span>
-          <div class="hero-sprite sprite" style="--size: 312px" aria-hidden="true"><img src="assets/mascots/bee.png" width="1448" height="1086" alt="" fetchpriority="high"></div>
-          <div class="timer-pill hero-timer" aria-hidden="true">
-            <span class="timer-readout"><small>1. TUR</small><strong>25:00</strong></span>
-            <span class="timer-icon"><svg viewBox="0 0 16 16"><path d="M4 2.5v11L13 8z"/></svg></span>
-            <span class="timer-icon"><svg viewBox="0 0 16 16"><path d="M2 4v8l6-4zM9 4v8l5-4z"/></svg></span>
-            <span class="timer-icon"><svg viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M3 5a5.3 5.3 0 1 1-1 3M3 2v3h3"/></svg></span>
+          <div id="demo-sprite" class="hero-sprite sprite" style="--size: 312px" data-stage="focus" aria-hidden="true"><img src="assets/mascots/bee.png" width="1448" height="1086" alt="" fetchpriority="high"></div>
+          <div class="timer-pill hero-timer">
+            <span class="timer-readout"><small id="demo-phase" aria-live="polite">1. TUR</small><strong id="demo-time" role="timer">25:00</strong></span>
+            <button id="demo-play" class="timer-control" type="button" aria-label="Başlat" title="Başlat"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="play-glyph" d="M4 2.5v11L13 8z"/><path class="pause-glyph" d="M3.5 2.5h3v11h-3zm6 0h3v11h-3z"/></svg></button>
+            <button id="demo-next" class="timer-control" type="button" aria-label="Sonraki adıma geç" title="Sonraki adıma geç"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 4v8l6-4zm6.5 0v8l5-4zM13.5 3v10h1V3z"/></svg></button>
+            <button id="demo-reset" class="timer-control" type="button" aria-label="Bu oturumu sıfırla" title="Bu oturumu sıfırla"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M3 5a5.3 5.3 0 1 1-1 3M3 2v3h3"/></svg></button>
           </div>
           <p class="hero-art-caption"><span class="caption-line" aria-hidden="true"></span> Sen nereye, Mimo oraya.</p>
         </div>

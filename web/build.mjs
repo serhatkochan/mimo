@@ -16,6 +16,7 @@ await Promise.all([
     copyFile(path.join(webDir, name), path.join(outDir, name)),
   ),
   copyFile(path.join(repoDir, "Mimo", "Assets", "mimo.ico"), path.join(outDir, "assets", "mimo.ico")),
+  copyFile(path.join(webDir, "assets", "mimo-mark.svg"), path.join(outDir, "assets", "mimo-mark.svg")),
   ...catalog.mascots.map(({ id }) =>
     copyFile(path.join(mascotSourceDir, `${id}.png`), path.join(outDir, "assets", "mascots", `${id}.png`)),
   ),

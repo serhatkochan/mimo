@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Mimo</title>
+  <rect width="64" height="64" rx="14" fill="#181515"/>
+  <g transform="rotate(-8 32 32)">
+    <rect x="6" y="6" width="22" height="22" rx="8" fill="#f6b36d"/>
+    <rect x="36" y="6" width="22" height="22" rx="8" fill="#e98068"/>
+    <rect x="6" y="36" width="22" height="22" rx="8" fill="#e98068"/>
+    <rect x="36" y="36" width="22" height="22" rx="8" fill="#f8d493"/>
+  </g>
+</svg>

@@ -5,3 +5,10 @@
 *.suo
 publish/
 *-preview.png
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key

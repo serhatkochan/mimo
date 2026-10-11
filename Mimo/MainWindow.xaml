@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:Mimo.Controls"
-        Title="Mimo" Width="160" Height="178" MinWidth="160" MinHeight="46"
+        Title="Mimo" Icon="Assets/mimo.ico" Width="160" Height="178" MinWidth="160" MinHeight="46"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True"
         WindowStartupLocation="Manual"
