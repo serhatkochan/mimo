@@ -122,7 +122,10 @@ function updateDemoClock() {
   const now = Date.now();
   demo.remainingMs = Math.max(0, demo.deadline - now);
   if (demo.remainingMs === 0) {
-    demo.running = false;
+    if (demo.phase === "long") {
+      demo.running = false;
+      demo.finishedFocusRounds = 0;
+    }
     advanceDemoPhase(now);
     syncDemoTicker();
   }

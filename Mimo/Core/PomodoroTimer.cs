@@ -128,6 +128,8 @@ public sealed class PomodoroTimer
         {
             var finished = Kind;
             Advance();
+            if (finished != SessionKind.LongBreak)
+                Start(now);
             SessionFinished?.Invoke(finished);
             return;
         }

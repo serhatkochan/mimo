@@ -37,7 +37,7 @@ Panel tur numarasını ve kalan süreyi gösterir; hep diğer pencerelerin üzer
 
 Varsayılan ritim **25 dakika odak, 5 dakika kısa mola**. Dördüncü odak turundan sonra **15 dakika uzun mola** gelir. Her tur ve mola süresi ile uzun molaya kadar geçecek tur sayısı sağ tık menüsündeki **Süre ayarları** penceresinden değiştirilebilir; geçerli değerler otomatik kaydedilir. Süreler 1–180 dakika, uzun mola aralığı 2–12 tur olabilir.
 
-Süre kendiliğinden bittiğinde Mimo bir sonraki adıma geçer ve bekler. Oturumu sen başlatırsın.
+İlk turu başlattıktan sonra odak ve mola süreleri bittiğinde Mimo bir sonraki adıma geçip sayacı otomatik başlatır. Ayarladığın tur sayısının ardından uzun mola da tamamlanınca 1. tura döner ve duraklar; yeni döngüyü sen başlatırsın.
 
 ## Maskotlar
 
