@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Mimo.Audio;
 using Mimo.Controls;
 using Mimo.Core;
 using Mimo.Models;
@@ -25,6 +26,7 @@ public partial class MainWindow : Window
     private static readonly Geometry PauseGeometry = Geometry.Parse("M 3,2 H 5.5 V 14 H 3 Z M 9.5,2 H 12 V 14 H 9.5 Z");
     private readonly AppState _state;
     private readonly PomodoroTimer _timer;
+    private readonly CompletionSounds _completionSounds = new();
     private readonly DispatcherTimer _ticker = new() { Interval = TimeSpan.FromMilliseconds(250) };
     private readonly DispatcherTimer _saveDebounce = new() { Interval = TimeSpan.FromMilliseconds(550) };
     private readonly List<Button> _mascotButtons = [];
@@ -66,6 +68,7 @@ public partial class MainWindow : Window
             Root.ContextMenu = BuildContextMenu();
         };
         _ticker.Tick += (_, _) => { _timer.Tick(DateTimeOffset.Now); UpdateDisplay(); };
+        _timer.SessionFinished += _completionSounds.Play;
         _saveDebounce.Tick += (_, _) => { _saveDebounce.Stop(); SaveState(); };
         _ready = true;
         UpdateDisplay();
@@ -496,6 +499,7 @@ public partial class MainWindow : Window
     {
         _ticker.Stop();
         _saveDebounce.Stop();
+        _completionSounds.Dispose();
         RememberPosition();
         SaveState();
     }

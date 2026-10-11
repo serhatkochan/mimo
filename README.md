@@ -49,7 +49,7 @@ Her maskotun odak, kısa mola ve uzun mola için ayrı çizimi ve kendine özgü
 
 Mimo; seçtiğin maskotu, maskotun görünürlüğünü, pencere konumunu ve süre ayarlarını `%LOCALAPPDATA%\Mimo\state.json` dosyasında tutar. Günlük çalışma geçmişi, hesap veya çevrimiçi eşitleme yoktur. Uygulama açıldığında yeni birinci turla başlar ve kullanmak için internet gerekmez.
 
-Uygulama sessiz çalışır; başlangıç/bitiş sesi veya müzik oynatıcısı içermez.
+Odak turu ve mola bittiğinde iki ayrı, kısa bildirim sesi çalar. Başlangıç sesi veya müzik oynatıcısı içermez.
 
 **Güncelleme:** Sağ tık → **Çıkış** ile uygulamayı kapatıp [güncel kurulum dosyasını](https://github.com/serhatkochan/mimo/releases/latest) çalıştır. Ayarlar uygulama dosyasından ayrı tutulduğu için korunur.
 

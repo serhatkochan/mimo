@@ -17,6 +17,8 @@ timer.Tick(now.AddHours(3).AddMinutes(15));
 Assert(timer.Kind == SessionKind.ShortBreak && !timer.IsRunning, "focus advances to break");
 Assert(timer.FinishedFocusRounds == 1 && timer.CurrentRound == 2 &&
        finished.SequenceEqual([SessionKind.Focus]), "focus completion event and round number");
+timer.Tick(now.AddHours(4));
+Assert(finished.Count == 1, "completion fires only once");
 
 timer.Start(now);
 timer.Tick(now.AddMinutes(5));
@@ -34,16 +36,20 @@ for (var i = 0; i < 3; i++)
 Assert(timer.Kind == SessionKind.LongBreak && timer.FinishedFocusRounds == 4, "fourth focus gives long break");
 
 timer.SelectKind(SessionKind.Focus);
+var notificationsBeforeSkip = finished.Count;
 timer.Skip(now);
 Assert(timer.FinishedFocusRounds == 5 && timer.Kind == SessionKind.ShortBreak,
     "next-phase action advances the round cycle");
+Assert(finished.Count == notificationsBeforeSkip, "manual skip has no completion event");
 timer.SelectKind(SessionKind.Focus);
 timer.FocusMinutes = 40;
 Assert(timer.Remaining == TimeSpan.FromMinutes(40), "custom duration updates stopped phase");
 timer.Start(now);
 timer.Tick(now.AddMinutes(5));
+var notificationsBeforeReset = finished.Count;
 timer.Reset();
 Assert(!timer.IsRunning && timer.Remaining == TimeSpan.FromMinutes(40), "reset current phase");
+Assert(finished.Count == notificationsBeforeReset, "reset has no completion event");
 
 var manualCycle = new PomodoroTimer();
 for (var round = 1; round <= 8; round++)
